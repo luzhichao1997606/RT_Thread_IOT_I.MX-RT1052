@@ -22,3 +22,4 @@ W25Q256 mount failed!
 Clock freq is 600000000 
 msh />
 ```
+>### 完成触摸的移植，但是线程有点问题需要进行修改
