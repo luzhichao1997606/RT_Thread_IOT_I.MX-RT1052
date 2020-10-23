@@ -135,7 +135,7 @@ sources:
  ******************************************************************************/
 const clock_arm_pll_config_t armPllConfig_BOARD_BootClockRUN =
     {
-        .loopDivider = 100,                       /* PLL loop divider, Fout = Fin * 50 */
+        .loopDivider = 75,                       /* PLL loop divider, Fout = Fin * 50 */
         .src = 0,                                 /* Bypass clock source, 0 - OSC 24M, 1 - CLK1_P and CLK1_N */
     };
 const clock_sys_pll_config_t sysPllConfig_BOARD_BootClockRUN =
@@ -175,7 +175,7 @@ void BOARD_BootClockRUN(void)
     CLOCK_SetMux(kCLOCK_PeriphClk2Mux, 1); /* Set PERIPH_CLK2 MUX to OSC */
     CLOCK_SetMux(kCLOCK_PeriphMux, 1);     /* Set PERIPH_CLK MUX to PERIPH_CLK2 */
     /* Setting the VDD_SOC to 1.275V. It is necessary to config AHB to 600Mhz. */
-    DCDC->REG3 = (DCDC->REG3 & (~DCDC_REG3_TRG_MASK)) | DCDC_REG3_TRG(0x13);
+    DCDC->REG3 = (DCDC->REG3 & (~DCDC_REG3_TRG_MASK)) | DCDC_REG3_TRG(0x0d);
     /* Waiting for DCDC_STS_DC_OK bit is asserted */
     while (DCDC_REG0_STS_DC_OK_MASK != (DCDC_REG0_STS_DC_OK_MASK & DCDC->REG0))
     {

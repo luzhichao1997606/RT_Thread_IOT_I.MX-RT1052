@@ -490,7 +490,7 @@ void LCD_Set_Window(u16 sx, u16 sy, u16 width, u16 height)
 
 //初始化lcd
 //该初始化函数可以初始化各种型号的LCD(详见本.c文件最前面的描述)
-void LCD_Init(void)
+void My_LCD_Init(void)
 {
     u32 semcclock = 0;
     gpio_pin_config_t lcdbl_config;
@@ -1834,7 +1834,7 @@ void LCD_Init(void)
         SEMC->DBICR1 |= 10 << 20;               //RD高电平时间
         SEMC->DBICR1 |= 0 << 24;                //写数据建立时间,控制CS高电平时间(连续操作时),1CLK=6.67NS
     }
-    LCD_Display_Dir(0);     //默认为竖屏
+    LCD_Display_Dir(1);     //默认为竖屏
     LCD_LED(1);             //点亮背光
     LCD_Clear(WHITE);
 }

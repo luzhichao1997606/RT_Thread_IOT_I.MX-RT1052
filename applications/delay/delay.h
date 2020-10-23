@@ -11,7 +11,7 @@
 #define _DELAY_H
 #include <sys.h>	 
 /* 获取内核时钟频率 */
-#define GET_CPU_ClkFreq()       CLOCK_GetFreq(kCLOCK_CpuClk) 
+#define GET_CPU_ClkFreq()       CLOCK_GetFreq(kCLOCK_AhbClk) 
 #define SysClockFreq            (600000000)
 /* 为方便使用，在延时函数内部调用CPU_TS_TmrInit函数初始化时间戳寄存器，
    这样每次调用函数都会初始化一遍。

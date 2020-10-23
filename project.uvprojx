@@ -16,7 +16,7 @@
         <TargetCommonOption>
           <Device>MIMXRT1052CVL5B</Device>
           <Vendor>NXP</Vendor>
-          <PackID>NXP.MIMXRT1052_DFP.12.1.0</PackID>
+          <PackID>NXP.MIMXRT1052_DFP.12.2.0</PackID>
           <PackURL>http://mcuxpresso.nxp.com/cmsis_pack/repo/</PackURL>
           <Cpu>IRAM(0x20000000,0x020000) IRAM2(0x00000000,0x020000) XRAM(0x20200000,0x040000) CPUTYPE("Cortex-M7") FPU3(DFPU) CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -189,7 +189,7 @@
             <hadIRAM2>1</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>0</StupSel>
-            <useUlib>0</useUlib>
+            <useUlib>1</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
             <nSecure>0</nSecure>
@@ -313,7 +313,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>1</Optim>
+            <Optim>4</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -339,7 +339,7 @@
               <MiscControls>--library_interface=armcc --library_type=standardlib --diag_suppress=66,1296,186</MiscControls>
               <Define>SKIP_SYSCLK_INIT, CPU_MIMXRT1052CVL5B, FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL=1, XIP_EXTERNAL_FLASH=1, EVK_MCIMXRM, RT_USING_ARM_LIBC</Define>
               <Undefine></Undefine>
-              <IncludePath>applications;rt-thread\libcpu\arm\common;rt-thread\libcpu\arm\cortex-m7;rt-thread\components\drivers\include;rt-thread\components\drivers\include;rt-thread\components\drivers\include;rt-thread\components\drivers\spi;rt-thread\components\drivers\include;rt-thread\components\drivers\spi\sfud\inc;rt-thread\components\drivers\include;board;board\MCUX_Config;board\ports;libraries\drivers;libraries\drivers\config;rt-thread\components\dfs\include;rt-thread\components\dfs\filesystems\devfs;rt-thread\components\finsh;.;rt-thread\include;rt-thread\components\libc\compilers\armlibc;rt-thread\components\libc\compilers\common;libraries\MIMXRT1050\CMSIS\Include;libraries\MIMXRT1050\MIMXRT1052;libraries\MIMXRT1050\MIMXRT1052\drivers;.\applications\lcd;.\applications\sys;.\applications\delay;.\applications\lpuart;.\applications\touch;.\applications\24cxx;.\applications\lpi2c</IncludePath>
+              <IncludePath>applications;rt-thread\libcpu\arm\common;rt-thread\libcpu\arm\cortex-m7;rt-thread\components\drivers\include;rt-thread\components\drivers\include;rt-thread\components\drivers\include;rt-thread\components\drivers\spi;rt-thread\components\drivers\include;rt-thread\components\drivers\spi\sfud\inc;rt-thread\components\drivers\include;board;board\MCUX_Config;board\ports;libraries\drivers;libraries\drivers\config;rt-thread\components\dfs\include;rt-thread\components\dfs\filesystems\devfs;rt-thread\components\finsh;.;rt-thread\include;rt-thread\components\libc\compilers\armlibc;rt-thread\components\libc\compilers\common;libraries\MIMXRT1050\CMSIS\Include;libraries\MIMXRT1050\MIMXRT1052;libraries\MIMXRT1050\MIMXRT1052\drivers;.\applications\lcd;.\applications\sys;.\applications\delay;.\applications\lpuart;.\applications\touch;.\applications\24cxx;.\applications\lpi2c;.\libraries\emwin\emWin_Config;.\libraries\emwin\emWin_header;.\libraries\emwin\emWin_library\Keil;.\libraries\emwin\Source\Generated;.\libraries\emwin\Source\CustomCode;.\libraries\emwin\Resource\Font;.\libraries\emwin\Resource\Image;.\libraries\emwin\Resource\Text</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -662,6 +662,11 @@
               <FileType>1</FileType>
               <FilePath>.\applications\sys\sys.c</FilePath>
             </File>
+            <File>
+              <FileName>drv_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libraries\drivers\drv_sdram.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -911,6 +916,141 @@
               <FileName>fsl_lpi2c.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\libraries\MIMXRT1050\MIMXRT1052\drivers\fsl_lpi2c.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>emWin_lib</GroupName>
+          <Files>
+            <File>
+              <FileName>emWin_M7.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>C:\Users\DELL\Desktop\RT_Thread_IOT_I.MX-RT1052\libraries\emwin\emWin_library\Keil\emWin_M7.lib</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>emWin_Config</GroupName>
+          <Files>
+            <File>
+              <FileName>GUIConf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\libraries\emwin\emWin_Config\GUIConf.h</FilePath>
+            </File>
+            <File>
+              <FileName>LCDConf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\libraries\emwin\emWin_Config\LCDConf.h</FilePath>
+            </File>
+            <File>
+              <FileName>emwin_support.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\board\emwin_support.c</FilePath>
+            </File>
+            <File>
+              <FileName>GUIDRV_Template.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libraries\emwin\emWin_Config\GUIDRV_Template.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>emWin_AppWizard</GroupName>
+          <Files>
+            <File>
+              <FileName>ID_SCREEN_Next_Slots.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libraries\emwin\Source\CustomCode\ID_SCREEN_Next_Slots.c</FilePath>
+            </File>
+            <File>
+              <FileName>ID_SCREEN_Test_Slots.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libraries\emwin\Source\CustomCode\ID_SCREEN_Test_Slots.c</FilePath>
+            </File>
+            <File>
+              <FileName>APPWConf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libraries\emwin\Source\Generated\APPWConf.c</FilePath>
+            </File>
+            <File>
+              <FileName>ID_SCREEN_Next.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libraries\emwin\Source\Generated\ID_SCREEN_Next.c</FilePath>
+            </File>
+            <File>
+              <FileName>ID_SCREEN_Test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libraries\emwin\Source\Generated\ID_SCREEN_Test.c</FilePath>
+            </File>
+            <File>
+              <FileName>Resource.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libraries\emwin\Source\Generated\Resource.c</FilePath>
+            </File>
+            <File>
+              <FileName>APPW_MainTask.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libraries\emwin\Source\APPW_MainTask.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>emWin_file</GroupName>
+          <Files>
+            <File>
+              <FileName>NettoOT_32_Normal_EXT_AA4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libraries\emwin\Resource\Font\NettoOT_32_Normal_EXT_AA4.c</FilePath>
+            </File>
+            <File>
+              <FileName>Button_round_basic_color_blue_1_60.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libraries\emwin\Resource\Image\Button_round_basic_color_blue_1_60.c</FilePath>
+            </File>
+            <File>
+              <FileName>Button_round_basic_color_green_1_60.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libraries\emwin\Resource\Image\Button_round_basic_color_green_1_60.c</FilePath>
+            </File>
+            <File>
+              <FileName>Button_round_basic_color_red_1_60.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libraries\emwin\Resource\Image\Button_round_basic_color_red_1_60.c</FilePath>
+            </File>
+            <File>
+              <FileName>SliderLeftGreen_40x20.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libraries\emwin\Resource\Image\SliderLeftGreen_40x20.c</FilePath>
+            </File>
+            <File>
+              <FileName>SliderRightGray_40x20.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libraries\emwin\Resource\Image\SliderRightGray_40x20.c</FilePath>
+            </File>
+            <File>
+              <FileName>ThumbDisabled_30x30.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libraries\emwin\Resource\Image\ThumbDisabled_30x30.c</FilePath>
+            </File>
+            <File>
+              <FileName>ThumbRight_30x30.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libraries\emwin\Resource\Image\ThumbRight_30x30.c</FilePath>
+            </File>
+            <File>
+              <FileName>APPW_Language_0.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libraries\emwin\Resource\Text\APPW_Language_0.c</FilePath>
+            </File>
+            <File>
+              <FileName>APPW_Language_1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libraries\emwin\Resource\Text\APPW_Language_1.c</FilePath>
+            </File>
+            <File>
+              <FileName>APPW_Pattern.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libraries\emwin\Resource\Text\APPW_Pattern.c</FilePath>
             </File>
           </Files>
         </Group>

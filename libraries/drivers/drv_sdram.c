@@ -26,8 +26,7 @@ int rt_hw_sdram_Init(void)
     int result = RT_EOK;
     semc_config_t config;
     semc_sdram_config_t sdramconfig;
-    rt_uint32_t clockFrq = CLOCK_GetFreq(kCLOCK_SemcClk);
-
+    rt_uint32_t clockFrq = 90000000;//CLOCK_GetFreq(kCLOCK_SemcClk); 
     /* Initializes the MAC configure structure to zero. */
     memset(&config, 0, sizeof(semc_config_t));
     memset(&sdramconfig, 0, sizeof(semc_sdram_config_t));

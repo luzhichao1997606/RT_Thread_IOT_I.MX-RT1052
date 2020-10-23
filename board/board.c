@@ -11,7 +11,8 @@
 #include <rthw.h>
 #include <rtthread.h>
 #include "board.h"
-#include "pin_mux.h"
+#include "pin_mux.h" 
+#include "sdram_port.h"
 
 #ifdef BSP_USING_DMA
 #include "fsl_dmamux.h"
@@ -74,8 +75,8 @@ static void BOARD_ConfigMPU(void)
     MPU->RASR = ARM_MPU_RASR(0, ARM_MPU_AP_FULL, 0, 0, 1, 1, 0, ARM_MPU_REGION_SIZE_32MB);
 
     /* Region 8 setting */
-    MPU->RBAR = ARM_MPU_RBAR(8, 0x81E00000U);
-    MPU->RASR = ARM_MPU_RASR(0, ARM_MPU_AP_FULL, 1, 1, 0, 0, 0, ARM_MPU_REGION_SIZE_2MB);
+    MPU->RBAR = ARM_MPU_RBAR(8, 0x81000000U);
+    MPU->RASR = ARM_MPU_RASR(0, ARM_MPU_AP_FULL, 1, 1, 0, 0, 0, ARM_MPU_REGION_SIZE_16MB);
 #endif
 
     /* Enable MPU */
@@ -125,6 +126,7 @@ void rt_hw_board_init()
 
 #ifdef RT_USING_HEAP
     rt_system_heap_init((void *)HEAP_BEGIN, (void *)HEAP_END);
+    //rt_system_heap_init((void *)SDRAM_BANK_ADDR,(void *)(SDRAM_SIZE + SDRAM_BANK_ADDR));
 #endif
 
 #ifdef RT_USING_COMPONENTS_INIT
