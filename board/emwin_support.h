@@ -83,7 +83,7 @@
 #define GUI_LARGE_FONT  (&GUI_Font32B_ASCII)
 
 #define GUI_BUFFERS  				2
-#define GUI_NUMBYTES 				(1024 * 60) /*! Amount of memory assigned to the emWin library */
+#define GUI_NUMBYTES 				(1024 * 512) /*! Amount of memory assigned to the emWin library */
 #define GUI_BLOCKSIZE				0X80  //块大小
 
 

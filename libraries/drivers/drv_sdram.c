@@ -20,13 +20,25 @@
 #ifdef RT_USING_MEMHEAP_AS_HEAP
 static struct rt_memheap system_heap;
 #endif
+static void _SDRAM_clock_init(void)
+{ 
+	  CLOCK_SetMux(kCLOCK_SemcMux, 1);
+//  /* 0：PLL2 PFD2//316.8M
+//     1：PLL3 PFD1
+//     alternative clock 使用PLL2 PFD2 */
+	  CLOCK_SetMux(kCLOCK_SemcAltMux, 0);  
+//  /* 分频后得到SEMC_CLK_ROOT，
+//     SEMC_CLK_ROOT = PLL2 PFD2/(1+1) */
+		CLOCK_SetDiv(kCLOCK_SemcDiv,3);
+}
 
 int rt_hw_sdram_Init(void)
 {
     int result = RT_EOK;
     semc_config_t config;
     semc_sdram_config_t sdramconfig;
-    rt_uint32_t clockFrq = 90000000;//CLOCK_GetFreq(kCLOCK_SemcClk); 
+		_SDRAM_clock_init();
+    rt_uint32_t clockFrq = CLOCK_GetFreq(kCLOCK_SemcClk); 
     /* Initializes the MAC configure structure to zero. */
     memset(&config, 0, sizeof(semc_config_t));
     memset(&sdramconfig, 0, sizeof(semc_sdram_config_t));
@@ -74,7 +86,7 @@ int rt_hw_sdram_Init(void)
 	 * 		1. Reserve the half space for SDRAM link case
 	 *		2. Reserve the 2M for non-cache space
 	 */
-        rt_memheap_init(&system_heap, "sdram", (void *)(SDRAM_BANK_ADDR + (SDRAM_SIZE * 1024)/2),
+			rt_memheap_init(&system_heap, "sdram", (void *)(SDRAM_BANK_ADDR + (SDRAM_SIZE * 1024)/2),
 			(SDRAM_SIZE * 1024)/2 - (2 * 1024 * 1024));
 #endif
     }

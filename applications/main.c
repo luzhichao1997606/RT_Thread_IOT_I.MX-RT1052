@@ -18,12 +18,13 @@
 #include "tftlcd.h"
 #include "touch.h"
 #include "string.h"
-#include "GUI.h"
+#include "GUI.h" 
+#include "WM.h"
 #include "emwin_support.h"
-#include "sdram_port.h"
+#include "sdram_port.h" 
 /* DS1,GPIO3_IO03,GPIO_SD_B1_03 */
 #define LED0_PIN               GET_PIN(3,3)
-
+GUI_MEMDEV_Handle hMem ;
 //rt_uint32_t *my_sdram = (rt_uint32_t *)SDRAM_BANK_ADDR; /* SDRAM start address. */
 //清空屏幕并在右上角显示"RST"
 void Load_Drow_Dialog(void)
@@ -33,6 +34,54 @@ void Load_Drow_Dialog(void)
     LCD_ShowString(lcddev.width - 24, 0, 200, 16, 16, "RST"); //显示清屏区域
     POINT_COLOR = RED; //设置画笔蓝色
 }
+
+void Draw(int x0, int y0, int x1, int y1, int i)
+{
+    char buf[10] = { 0 };
+    
+    GUI_SetColor(GUI_BLUE);
+    GUI_FillRect(x0, y0, x1, y1);
+
+    GUI_SetFont(GUI_FONT_D64);
+    GUI_SetTextMode(GUI_TEXTMODE_XOR); 
+    GUI_DispStringHCenterAt(buf, x0 + (x1 - x0) / 2, y0 + (y1 - y0) / 2 - 32);
+}
+
+void MyTask(void) { 
+		
+		GUI_Clear();
+    GUI_SetColor(GUI_LIGHTGRAY);
+    GUI_RECT rect = { 0, 0, LCD_GetXSize(), 49 };
+    GUI_FillRectEx(&rect);
+    char title[] = "Draw direct And Use Memory device";
+    GUI_SetFont(GUI_FONT_24_ASCII);
+    GUI_SetColor(GUI_RED);
+    GUI_SetTextMode(GUI_TEXTMODE_TRANS);
+    GUI_DispStringInRect(title, &rect, GUI_TA_HCENTER | GUI_TA_VCENTER);
+    GUI_DispStringAt("Direct Draw", 70, 200);
+    GUI_DispStringAt("Use Memory", 300, 200);
+
+    
+    int i = 0;
+    while (1)
+    {
+        GUI_Delay(5);
+        Draw(50, 50, 200, 200, i); // 直接在LCD绘制
+			
+        GUI_MEMDEV_Select(hMem); //选择内存设备
+        Draw(280, 50, 430, 200, i); // 在内存中绘制
+        GUI_MEMDEV_Select(0); // 恢复LCD设备
+        GUI_MEMDEV_CopyToLCDAt(hMem, 280, 50);
+			
+        i++;
+        if (i >= 1000) i = 0;
+    }
+
+  while(1);
+}
+
+
+
 ////////////////////////////////////////////////////////////////////////////////
 //电容触摸屏专有部分
 //画水平线
@@ -192,9 +241,9 @@ int main(void)
 {
     int i = 0; 
     /* set LED0 pin mode to output */
-    rt_pin_mode(LED0_PIN, PIN_MODE_OUTPUT);
-    GUI_Init();
-
+    rt_pin_mode(LED0_PIN, PIN_MODE_OUTPUT); 
+    GUI_Init(); 	 
+	 
     /* 对于初学者，这个地方一定要注意，这里只是设置背景颜色，也就是给变量赋值了一下 */
     GUI_SetBkColor(GUI_BLACK);
 
@@ -211,10 +260,11 @@ int main(void)
     //tp_dev.init();                  //触摸屏初始化
     rt_kprintf("Clock freq is %d \r\n", GET_CPU_ClkFreq());
     rt_kprintf("width is %d ,lenth is %d\r\n", lcddev.width, lcddev.height);
-
-    GUI_Delay(500); FSL_Delay_ms(1500);
+		WM_MULTIBUF_Enable(1);//多级缓存 
+    GUI_Delay(500);  
     while (1) { 
-				MainTask();
+				MainTask(); 
+				//MyTask();
     }
     //Load_Drow_Dialog();
     //if (tp_dev.touchtype & 0X80)ctp_test(); //电容屏测试

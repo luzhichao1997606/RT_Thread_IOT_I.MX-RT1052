@@ -2,8 +2,8 @@
 #include "stdlib.h"
 #include "font.h"
 #include "delay.h"
-#include "stdio.h"
-
+#include "stdio.h" 
+#include <rtthread.h>
 
 
 //LCD的画笔颜色和背景色
@@ -309,17 +309,17 @@ void LCD_DrawPoint(u16 x, u16 y)
 //color:颜色
 void LCD_Fast_DrawPoint(u16 x, u16 y, u32 color)
 {
-    if (lcddev.id == 0X9341 || lcddev.id == 0X5310)
-    {
-        LCD_WR_REG(lcddev.setxcmd);
-        LCD_WR_DATA(x >> 8);
-        LCD_WR_DATA(x & 0XFF);
-        LCD_WR_REG(lcddev.setycmd);
-        LCD_WR_DATA(y >> 8);
-        LCD_WR_DATA(y & 0XFF);
-    }
-    else if (lcddev.id == 0X5510)
-    {
+//    if (lcddev.id == 0X9341 || lcddev.id == 0X5310)
+//    {
+//        LCD_WR_REG(lcddev.setxcmd);
+//        LCD_WR_DATA(x >> 8);
+//        LCD_WR_DATA(x & 0XFF);
+//        LCD_WR_REG(lcddev.setycmd);
+//        LCD_WR_DATA(y >> 8);
+//        LCD_WR_DATA(y & 0XFF);
+//    }
+//    else if (lcddev.id == 0X5510)
+//    {
         LCD_WR_REG(lcddev.setxcmd);
         LCD_WR_DATA(x >> 8);
         LCD_WR_REG(lcddev.setxcmd + 1);
@@ -328,21 +328,21 @@ void LCD_Fast_DrawPoint(u16 x, u16 y, u32 color)
         LCD_WR_DATA(y >> 8);
         LCD_WR_REG(lcddev.setycmd + 1);
         LCD_WR_DATA(y & 0XFF);
-    }
-    else if (lcddev.id == 0X1963)
-    {
-        if (lcddev.dir == 0)x = lcddev.width - 1 - x;
-        LCD_WR_REG(lcddev.setxcmd);
-        LCD_WR_DATA(x >> 8);
-        LCD_WR_DATA(x & 0XFF);
-        LCD_WR_DATA(x >> 8);
-        LCD_WR_DATA(x & 0XFF);
-        LCD_WR_REG(lcddev.setycmd);
-        LCD_WR_DATA(y >> 8);
-        LCD_WR_DATA(y & 0XFF);
-        LCD_WR_DATA(y >> 8);
-        LCD_WR_DATA(y & 0XFF);
-    }
+//    }
+//    else if (lcddev.id == 0X1963)
+//    {
+//        if (lcddev.dir == 0)x = lcddev.width - 1 - x;
+//        LCD_WR_REG(lcddev.setxcmd);
+//        LCD_WR_DATA(x >> 8);
+//        LCD_WR_DATA(x & 0XFF);
+//        LCD_WR_DATA(x >> 8);
+//        LCD_WR_DATA(x & 0XFF);
+//        LCD_WR_REG(lcddev.setycmd);
+//        LCD_WR_DATA(y >> 8);
+//        LCD_WR_DATA(y & 0XFF);
+//        LCD_WR_DATA(y >> 8);
+//        LCD_WR_DATA(y & 0XFF);
+//    }
     LCD->LCD_REG = lcddev.wramcmd;
     LCD->LCD_RAM = color;
 }
@@ -559,7 +559,8 @@ void My_LCD_Init(void)
     LCD_LED(0);                                 //关闭LCD背光
     SEMC->BR[4] = 0; //不知为何，要清除BR4寄存器，否则MCU屏没法使用！！
     //初始化DBI接口
-    semcclock = CLOCK_GetFreq(kCLOCK_SemcClk);      //获取SEMC时钟，150M
+    semcclock = CLOCK_GetFreq(kCLOCK_SemcClk);      //获取SEMC时钟，150M 
+		rt_kprintf("semcclock is %d \r\n",semcclock);
     dbi_config.csxPinMux = kSEMC_MUXCSX1;           //CS引脚CSX1
     dbi_config.address = DBI_START_ADDR & 0XFFFFF000; //DBI开始地址
     dbi_config.memsize_kbytes = DBI_SIZE_KBYTES;    //大小

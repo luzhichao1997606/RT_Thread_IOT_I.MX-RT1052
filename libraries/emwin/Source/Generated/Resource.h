@@ -26,6 +26,8 @@ Purpose     : Generated file do NOT edit!
 #define Button_Key 0
 #define Open_Text 1
 #define Close_Text 2
+#define One_Text 3
+#define Two_Text 4
 
 #define APPW_MANAGE_TEXT APPW_MANAGE_TEXT_EXT
 
@@ -42,13 +44,6 @@ extern const unsigned char acNettoOT_32_Normal_EXT_AA4[];
 *
 *       Images
 */
-extern const unsigned char acButton_round_basic_color_green_1_60[];
-extern const unsigned char acButton_round_basic_color_red_1_60[];
-extern const unsigned char acButton_round_basic_color_blue_1_60[];
-extern const unsigned char acSliderLeftGreen_40x20[];
-extern const unsigned char acSliderRightGray_40x20[];
-extern const unsigned char acThumbDisabled_30x30[];
-extern const unsigned char acThumbRight_30x30[];
 
 /*********************************************************************
 *

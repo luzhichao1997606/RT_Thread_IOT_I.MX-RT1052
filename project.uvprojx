@@ -337,9 +337,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls>--library_interface=armcc --library_type=standardlib --diag_suppress=66,1296,186</MiscControls>
-              <Define>SKIP_SYSCLK_INIT, CPU_MIMXRT1052CVL5B, FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL=1, XIP_EXTERNAL_FLASH=1, EVK_MCIMXRM, RT_USING_ARM_LIBC</Define>
+              <Define>SKIP_SYSCLK_INIT, CPU_MIMXRT1052CVL5B, FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL=1, XIP_EXTERNAL_FLASH=1, EVK_MCIMXRM, RT_USING_ARM_LIBC,__TARGET_FPU_VFP</Define>
               <Undefine></Undefine>
-              <IncludePath>applications;rt-thread\libcpu\arm\common;rt-thread\libcpu\arm\cortex-m7;rt-thread\components\drivers\include;rt-thread\components\drivers\include;rt-thread\components\drivers\include;rt-thread\components\drivers\spi;rt-thread\components\drivers\include;rt-thread\components\drivers\spi\sfud\inc;rt-thread\components\drivers\include;board;board\MCUX_Config;board\ports;libraries\drivers;libraries\drivers\config;rt-thread\components\dfs\include;rt-thread\components\dfs\filesystems\devfs;rt-thread\components\finsh;.;rt-thread\include;rt-thread\components\libc\compilers\armlibc;rt-thread\components\libc\compilers\common;libraries\MIMXRT1050\CMSIS\Include;libraries\MIMXRT1050\MIMXRT1052;libraries\MIMXRT1050\MIMXRT1052\drivers;.\applications\lcd;.\applications\sys;.\applications\delay;.\applications\lpuart;.\applications\touch;.\applications\24cxx;.\applications\lpi2c;.\libraries\emwin\emWin_Config;.\libraries\emwin\emWin_header;.\libraries\emwin\emWin_library\Keil;.\libraries\emwin\Source\Generated;.\libraries\emwin\Source\CustomCode;.\libraries\emwin\Resource\Font;.\libraries\emwin\Resource\Image;.\libraries\emwin\Resource\Text</IncludePath>
+              <IncludePath>applications;rt-thread\libcpu\arm\common;rt-thread\libcpu\arm\cortex-m7;rt-thread\components\drivers\include;rt-thread\components\drivers\include;rt-thread\components\drivers\include;rt-thread\components\drivers\spi;rt-thread\components\drivers\include;rt-thread\components\drivers\spi\sfud\inc;rt-thread\components\drivers\include;board;board\MCUX_Config;board\ports;libraries\drivers;libraries\drivers\config;rt-thread\components\dfs\include;rt-thread\components\dfs\filesystems\devfs;rt-thread\components\finsh;.;rt-thread\include;rt-thread\components\libc\compilers\armlibc;rt-thread\components\libc\compilers\common;libraries\MIMXRT1050\CMSIS\Include;libraries\MIMXRT1050\MIMXRT1052;libraries\MIMXRT1050\MIMXRT1052\drivers;.\applications\lcd;.\applications\sys;.\applications\delay;.\applications\lpuart;.\applications\touch;.\applications\24cxx;.\applications\lpi2c;.\libraries\emwin\emWin_Config;.\libraries\emwin\emWin_header;libraries\emwin\emWin_library\Keil;.\libraries\emwin\Source\Generated;.\libraries\emwin\Source\CustomCode;.\libraries\emwin\Resource\Font;.\libraries\emwin\Resource\Image;.\libraries\emwin\Resource\Text;.\libraries\emwin_app</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -925,7 +925,7 @@
             <File>
               <FileName>emWin_M7.lib</FileName>
               <FileType>4</FileType>
-              <FilePath>C:\Users\DELL\Desktop\RT_Thread_IOT_I.MX-RT1052\libraries\emwin\emWin_library\Keil\emWin_M7.lib</FilePath>
+              <FilePath>G:\00-项目资料\Company_Project\RT1052_emWin\RT_Thread_IOT_I.MX-RT1052\libraries\emwin\emWin_library\Keil\emWin_M7.lib</FilePath>
             </File>
           </Files>
         </Group>
@@ -1003,41 +1003,6 @@
               <FilePath>.\libraries\emwin\Resource\Font\NettoOT_32_Normal_EXT_AA4.c</FilePath>
             </File>
             <File>
-              <FileName>Button_round_basic_color_blue_1_60.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\libraries\emwin\Resource\Image\Button_round_basic_color_blue_1_60.c</FilePath>
-            </File>
-            <File>
-              <FileName>Button_round_basic_color_green_1_60.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\libraries\emwin\Resource\Image\Button_round_basic_color_green_1_60.c</FilePath>
-            </File>
-            <File>
-              <FileName>Button_round_basic_color_red_1_60.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\libraries\emwin\Resource\Image\Button_round_basic_color_red_1_60.c</FilePath>
-            </File>
-            <File>
-              <FileName>SliderLeftGreen_40x20.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\libraries\emwin\Resource\Image\SliderLeftGreen_40x20.c</FilePath>
-            </File>
-            <File>
-              <FileName>SliderRightGray_40x20.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\libraries\emwin\Resource\Image\SliderRightGray_40x20.c</FilePath>
-            </File>
-            <File>
-              <FileName>ThumbDisabled_30x30.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\libraries\emwin\Resource\Image\ThumbDisabled_30x30.c</FilePath>
-            </File>
-            <File>
-              <FileName>ThumbRight_30x30.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\libraries\emwin\Resource\Image\ThumbRight_30x30.c</FilePath>
-            </File>
-            <File>
               <FileName>APPW_Language_0.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\libraries\emwin\Resource\Text\APPW_Language_0.c</FilePath>
@@ -1051,6 +1016,16 @@
               <FileName>APPW_Pattern.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\libraries\emwin\Resource\Text\APPW_Pattern.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>emWin_application</GroupName>
+          <Files>
+            <File>
+              <FileName>WIDGET_Progress.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\libraries\emwin_app\WIDGET_Progress.c</FilePath>
             </File>
           </Files>
         </Group>

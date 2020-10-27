@@ -41,7 +41,7 @@ void MainTask(void) {
       APPW_Exec();
     }
     APPW_Exec();
-    GUI_Delay(1);
+    GUI_Delay(5);
   }
 }
 

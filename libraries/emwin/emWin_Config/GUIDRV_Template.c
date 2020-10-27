@@ -52,8 +52,8 @@ Purpose     : Template driver, could be used as starting point for new
   ******************************************************************************
   */
 
-#include <stddef.h>
-
+#include <stddef.h> 
+#include <rtthread.h>
 #include "LCD_Private.h"
 #include "GUI_Private.h"
 #include "LCD_ConfDefaults.h"
@@ -135,6 +135,7 @@ typedef struct {
 */
 static void _SetPixelIndex(GUI_DEVICE * pDevice, int x, int y, int PixelIndex) {
 	LCD_Fast_DrawPoint(x,y,PixelIndex);
+	 
 //	if(lcddev.id == 0x9341 || lcddev.id == 0x5310)
 //	{
 //		//����X����
@@ -188,25 +189,25 @@ static void _SetPixelIndex(GUI_DEVICE * pDevice, int x, int y, int PixelIndex) {
 */
 static unsigned int _GetPixelIndex(GUI_DEVICE * pDevice, int x, int y) {
 	unsigned int PixelIndex;
-    #if (LCD_MIRROR_X == 1) || (LCD_MIRROR_Y == 1) || (LCD_SWAP_XY == 1)
-      int xPhys, yPhys;
-
-      xPhys = LOG2PHYS_X(x, y);
-      yPhys = LOG2PHYS_Y(x, y);
-    #else
-      #define xPhys x
-      #define yPhys y
-    #endif
-    GUI_USE_PARA(pDevice);
-    GUI_USE_PARA(x);
-    GUI_USE_PARA(y);
-    {
-			PixelIndex = LCD_ReadPoint(x,y);
-    }
-    #if (LCD_MIRROR_X == 0) && (LCD_MIRROR_Y == 0) && (LCD_SWAP_XY == 0)
-      #undef xPhys
-      #undef yPhys
-    #endif
+  //  #if (LCD_MIRROR_X == 1) || (LCD_MIRROR_Y == 1) || (LCD_SWAP_XY == 1)
+  //    int xPhys, yPhys;
+	//
+  //    xPhys = LOG2PHYS_X(x, y);
+  //    yPhys = LOG2PHYS_Y(x, y);
+  //  #else
+  //    #define xPhys x
+  //    #define yPhys y
+  //  #endif
+  //  GUI_USE_PARA(pDevice);
+  //  GUI_USE_PARA(x);
+  //  GUI_USE_PARA(y);
+  //  {
+	PixelIndex = LCD_ReadPoint(x,y);
+   // }
+   // #if (LCD_MIRROR_X == 0) && (LCD_MIRROR_Y == 0) && (LCD_SWAP_XY == 0)
+   //   #undef xPhys
+   //   #undef yPhys
+   // #endif
   return PixelIndex;
 	
 }
@@ -479,7 +480,7 @@ static void  _DrawBitLine2BPP(GUI_DEVICE * pDevice, int x, int y, U8 const GUI_U
 static void  _DrawBitLine4BPP(GUI_DEVICE * pDevice, int x, int y, U8 const GUI_UNI_PTR * p, int Diff, int xsize, const LCD_PIXELINDEX * pTrans) {
   LCD_PIXELINDEX Pixels, PixelIndex;
   int CurrentPixel, Shift, Index;
-
+	 
   Pixels = *p;
   CurrentPixel = Diff;
   x += Diff;
@@ -547,7 +548,7 @@ static void  _DrawBitLine4BPP(GUI_DEVICE * pDevice, int x, int y, U8 const GUI_U
 */
 static void  _DrawBitLine8BPP(GUI_DEVICE * pDevice, int x, int y, U8 const GUI_UNI_PTR * p, int xsize, const LCD_PIXELINDEX * pTrans) {
   LCD_PIXELINDEX Pixel;
-
+	 
   switch (GUI_pContext->DrawMode & (LCD_DRAWMODE_TRANS | LCD_DRAWMODE_XOR)) {
   case 0:
     if (pTrans) {
@@ -593,6 +594,7 @@ static void _DrawBitLine16BPP(GUI_DEVICE * pDevice, int x, int y, U16 const GUI_
 	
 	LCD_PIXELINDEX pixel;
 	LCD_SetCursor(x,y);
+	 
 	*(__IO uint16_t *)(UCGUI_LCD_CMD)  = lcddev.wramcmd;  //д����ɫֵ
 	for (;xsize > 0; xsize--, x++, p++) 
 	{

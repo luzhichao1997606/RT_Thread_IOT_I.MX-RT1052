@@ -163,7 +163,6 @@ int BOARD_Touch_Poll(void)
 			pid_state.Pressed = 1;
 			GUI_TOUCH_StoreStateEx(&pid_state);
 			isTouched = 1;
-			//rt_kprintf("Pressed!!!\r\n");
 		}
 		else if (isTouched && (!((tp_dev.sta) &  (1 << 0))))
 		{
@@ -260,11 +259,11 @@ int LCD_X_DisplayDriver(unsigned LayerIndex, unsigned Cmd, void *p)
 void GUI_X_Config(void)
 {
     void *aMemory = RT_NULL; /* 内存块的指针 */ 
-    aMemory = rt_malloc(GUI_NUMBYTES); 
-    GUI_ALLOC_AssignMemory((void*)aMemory, GUI_NUMBYTES);
+    //aMemory = rt_malloc(GUI_NUMBYTES); 
+    //GUI_ALLOC_AssignMemory((void*)aMemory, GUI_NUMBYTES);
 	
 		/* Assign work memory area to emWin */
-    //GUI_ALLOC_AssignMemory(GUI_MEMORY_ADDR, GUI_NUMBYTES);
+    GUI_ALLOC_AssignMemory(GUI_MEMORY_ADDR, GUI_NUMBYTES);
 	
     GUI_ALLOC_SetAvBlockSize(GUI_BLOCKSIZE);
     /* Assign work memory area to emWin */ 
@@ -274,28 +273,28 @@ void GUI_X_Config(void)
 
 void GUI_X_Init(void)
 {
-    KeySem = rt_sem_create("Key_SEM", 0, RT_IPC_FLAG_FIFO);
+   // KeySem = rt_sem_create("Key_SEM", 0, RT_IPC_FLAG_FIFO);
 }
 
 /* Dummy RTOS stub required by emWin */
 void GUI_X_InitOS(void)
 {
 
-    DispSem = rt_sem_create("Disp_SEM", 1, RT_IPC_FLAG_FIFO);
-
-    EventSem = rt_sem_create("Event_SEM", 0, RT_IPC_FLAG_FIFO);
+    //DispSem = rt_sem_create("Disp_SEM", 1, RT_IPC_FLAG_FIFO);
+		//
+    //EventSem = rt_sem_create("Event_SEM", 0, RT_IPC_FLAG_FIFO);
 }
 
 /* Dummy RTOS stub required by emWin */
 void GUI_X_Lock(void)
 {
-    rt_sem_take(DispSem, 0);
+    //rt_sem_take(DispSem, 0);
 }
 
 /* Dummy RTOS stub required by emWin */
 void GUI_X_Unlock(void)
 {
-    rt_sem_release(DispSem);
+    //rt_sem_release(DispSem);
 }
 
 /* Dummy RTOS stub required by emWin */
@@ -335,10 +334,10 @@ void *emWin_memcpy(void *pDst, const void *pSrc, long size)
 
 void GUI_X_WaitEvent(void)
 {
-    rt_sem_take(EventSem, 0);
+    //rt_sem_take(EventSem, 0);
 }
 
 void GUI_X_SignalEvent(void)
 {
-    rt_sem_release(EventSem);
+    //rt_sem_release(EventSem);
 }

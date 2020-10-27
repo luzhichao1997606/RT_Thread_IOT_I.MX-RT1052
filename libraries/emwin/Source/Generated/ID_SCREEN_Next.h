@@ -23,8 +23,7 @@ Purpose     : Generated file do NOT edit!
 *
 *       Objects
 */
-#define ID_BOX_00    (GUI_ID_USER + 0)
-#define ID_SLIDER_00 (GUI_ID_USER + 1)
+#define ID_WINDOW_Next (GUI_ID_USER + 0)
 
 /*********************************************************************
 *

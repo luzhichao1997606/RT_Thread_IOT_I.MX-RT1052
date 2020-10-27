@@ -15,10 +15,10 @@ Purpose     : AppWizard managed file, function content could be changed
 */
 
 #include "Application.h"
-#include "rtthread.h"
 #include "../Generated/Resource.h"
 #include "../Generated/ID_SCREEN_Test.h"
-
+#include "rtthread.h"
+#include "WIDGET_Progress.h"
 /*********************************************************************
 *
 *       Public code
@@ -31,18 +31,22 @@ Purpose     : AppWizard managed file, function content could be changed
 */
 void cbID_SCREEN_Test(WM_MESSAGE * pMsg) {
   GUI_USE_PARA(pMsg);
-}
-
-/*********************************************************************
-*
-*       ID_SCREEN_Test__ID_BUTTON_00__WM_NOTIFICATION_CLICKED
-*/
-void ID_SCREEN_Test__ID_BUTTON_00__WM_NOTIFICATION_CLICKED(APPW_ACTION_ITEM * pAction, WM_HWIN hScreen, WM_MESSAGE * pMsg, int * pResult) {
-  GUI_USE_PARA(pAction);
-  GUI_USE_PARA(hScreen);
-  GUI_USE_PARA(pMsg);
-  GUI_USE_PARA(pResult);
-	rt_kprintf("button pressed!! \r\n");
+	WM_HWIN hItem;
+		 
+	switch (pMsg->MsgId) 
+	{
+			case WM_DELETE:
+				rt_kprintf("WM_Test_Delete\r\n");
+				break;
+			case WM_CREATE: 
+				rt_kprintf("WM_Test_Create\r\n"); 
+				break;
+			
+			case WM_INIT_DIALOG:
+				CreateWIDGET_Button(); 
+				rt_kprintf("WM_Test_InitDialog\r\n"); 
+				break;
+	}
 }
 
 /*************************** End of file ****************************/
